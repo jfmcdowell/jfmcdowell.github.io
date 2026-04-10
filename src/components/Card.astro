@@ -1,0 +1,65 @@
+---
+import TagList from "./TagList.astro";
+
+interface Props {
+  title: string;
+  href: string;
+  pubDate: Date;
+  description?: string;
+  tags?: string[];
+  externalUrl?: string;
+  event?: string;
+  commentary?: string;
+}
+
+const { title, href, pubDate, description, tags, externalUrl, event, commentary } = Astro.props;
+
+const dateStr = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<article class="card">
+  <header>
+    <a href={href} class="card-title">{title}</a>
+    <div class="card-meta muted text-sm">
+      <time datetime={pubDate.toISOString()}>{dateStr}</time>
+      {event && <span> &middot; {event}</span>}
+    </div>
+  </header>
+  {description && <p class="card-description">{description}</p>}
+  {commentary && <p class="card-description">{commentary}</p>}
+  {externalUrl && (
+    <p class="text-sm">
+      <a href={externalUrl} target="_blank" rel="noopener noreferrer">{externalUrl}</a>
+    </p>
+  )}
+  {tags && tags.length > 0 && <TagList tags={tags} />}
+</article>
+
+<style>
+  .card {
+    padding-block: var(--space-m);
+  }
+
+  .card + .card {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .card-title {
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .card-title:hover {
+    color: var(--color-accent);
+  }
+
+  .card-description {
+    margin-top: var(--space-xs);
+    color: var(--color-muted);
+  }
+</style>
