@@ -24,6 +24,7 @@ const currentPath = Astro.url.pathname;
         </li>
       ))}
     </ul>
+    <div id="search" class="search-container"></div>
     <ThemeToggle />
   </nav>
 </header>
@@ -58,6 +59,10 @@ const currentPath = Astro.url.pathname;
     font-weight: 600;
   }
 
+  .search-container {
+    flex-shrink: 0;
+  }
+
   @media (max-width: 640px) {
     nav {
       flex-wrap: wrap;
@@ -70,5 +75,30 @@ const currentPath = Astro.url.pathname;
     ul {
       gap: var(--space-s);
     }
+  }
+</style>
+
+<script>
+  async function loadPagefind() {
+    const pagefind = await import("/pagefind/pagefind-ui.js");
+    new pagefind.PagefindUI({
+      element: "#search",
+      showSubResults: false,
+      showImages: false,
+    });
+  }
+  loadPagefind();
+</script>
+
+<style is:global>
+  .pagefind-ui__search-input {
+    font-family: var(--font-body) !important;
+    font-size: var(--font-size-sm) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 4px !important;
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+    padding: 0.25rem 0.5rem !important;
+    width: 12rem !important;
   }
 </style>
