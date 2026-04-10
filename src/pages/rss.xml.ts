@@ -24,7 +24,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: "jfmcdowell",
     description: "Justin McDowell's blog and notes.",
-    site: context.site!.toString(),
+    site: context.site?.toString() ?? "https://jfmcdowell.github.io",
     items,
   });
 }
