@@ -1,7 +1,111 @@
 ---
 import Base from "@/layouts/Base.astro";
+import Card from "@/components/Card.astro";
+import {
+  getPublishedBlogPosts,
+  getPublishedNotes,
+  getPublishedLinks,
+  getPublishedTalks,
+} from "@/utils/content";
+
+const posts = await getPublishedBlogPosts();
+const notes = await getPublishedNotes();
+const links = await getPublishedLinks();
+const talks = await getPublishedTalks();
+
+const latestPost = posts[0];
+const recentNotes = notes.slice(0, 5);
+const recentLinks = links.slice(0, 5);
 ---
 
-<Base title="jfmcdowell">
-  <h1>Site coming soon.</h1>
+<Base title="jfmcdowell" description="Justin McDowell's personal site — blog, notes, talks, and links.">
+  <section class="hero">
+    <h1>Justin McDowell</h1>
+    <p class="muted">Writing about technology, architecture, and the things I learn along the way.</p>
+  </section>
+
+  {latestPost && (
+    <section>
+      <h2>Latest Post</h2>
+      <Card
+        title={latestPost.data.title}
+        href={`/blog/${latestPost.id}/`}
+        pubDate={latestPost.data.pubDate}
+        {...(latestPost.data.description !== undefined ? { description: latestPost.data.description } : {})}
+        {...(latestPost.data.tags !== undefined ? { tags: latestPost.data.tags } : {})}
+      />
+      <p class="section-link"><a href="/blog/">All posts &rarr;</a></p>
+    </section>
+  )}
+
+  {recentNotes.length > 0 && (
+    <section>
+      <h2>Recent Notes</h2>
+      {recentNotes.map((note) => (
+        <Card
+          title={note.data.title}
+          href={`/notes/${note.id}/`}
+          pubDate={note.data.pubDate}
+          {...(note.data.tags !== undefined ? { tags: note.data.tags } : {})}
+        />
+      ))}
+      <p class="section-link"><a href="/notes/">All notes &rarr;</a></p>
+    </section>
+  )}
+
+  {recentLinks.length > 0 && (
+    <section>
+      <h2>Links</h2>
+      {recentLinks.map((link) => (
+        <Card
+          title={link.data.title}
+          href={link.data.url}
+          pubDate={link.data.pubDate}
+          externalUrl={link.data.url}
+          {...(link.data.commentary !== undefined ? { commentary: link.data.commentary } : {})}
+        />
+      ))}
+      <p class="section-link"><a href="/links/">All links &rarr;</a></p>
+    </section>
+  )}
+
+  {talks.length > 0 && (
+    <section>
+      <h2>Talks</h2>
+      {talks.map((talk) => (
+        <Card
+          title={talk.data.title}
+          href={`/talks/${talk.id}/`}
+          pubDate={talk.data.pubDate}
+          {...(talk.data.event !== undefined ? { event: talk.data.event } : {})}
+        />
+      ))}
+      <p class="section-link"><a href="/talks/">All talks &rarr;</a></p>
+    </section>
+  )}
 </Base>
+
+<style>
+  .hero {
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-l);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero h1 {
+    margin-bottom: var(--space-s);
+  }
+
+  section {
+    margin-bottom: var(--space-xl);
+  }
+
+  h2 {
+    margin-bottom: var(--space-s);
+  }
+
+  .section-link {
+    margin-top: var(--space-m);
+    font-size: var(--font-size-sm);
+  }
+</style>
