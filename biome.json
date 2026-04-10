@@ -12,9 +12,17 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "recommended": true,
       "style": {
         "useConst": "error",
-        "noParameterAssign": "error"
+        "noParameterAssign": "error",
+        "useSelfClosingElements": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useTemplate": "error",
+        "useImportType": "error",
+        "noNonNullAssertion": "error",
+        "useEnumInitializers": "error",
+        "useNumberNamespace": "error"
       },
       "correctness": {
         "noUndeclaredDependencies": "error"

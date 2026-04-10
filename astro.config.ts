@@ -8,6 +8,15 @@ export default defineConfig({
   build: {
     format: "directory",
   },
+  markdown: {
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+    },
+  },
   vite: {
     build: {
       rollupOptions: {

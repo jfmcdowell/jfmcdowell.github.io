@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pnpm exec pagefind --site dist",
+    "build": "pnpm check && astro build && pnpm exec pagefind --site dist",
     "preview": "astro preview",
     "check": "biome check . && astro check && pnpm exec markdownlint-cli2 'src/content/**/*.{md,mdx}'",
     "format": "biome format --write ."
