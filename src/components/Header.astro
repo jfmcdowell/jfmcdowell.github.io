@@ -1,0 +1,74 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const navItems = [
+  { href: "/blog/", label: "Blog" },
+  { href: "/notes/", label: "Notes" },
+  { href: "/talks/", label: "Talks" },
+  { href: "/links/", label: "Links" },
+  { href: "/about/", label: "About" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <nav class="container" aria-label="Main navigation">
+    <a href="/" class="site-name">jfmcdowell</a>
+    <ul role="list">
+      {navItems.map(({ href, label }) => (
+        <li>
+          <a href={href} aria-current={currentPath.startsWith(href) ? "page" : undefined}>
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <ThemeToggle />
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-m);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+
+  .site-name {
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    margin-right: auto;
+  }
+
+  ul {
+    display: flex;
+    gap: var(--space-m);
+    list-style: none;
+  }
+
+  a[aria-current="page"] {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    nav {
+      flex-wrap: wrap;
+    }
+
+    .site-name {
+      width: 100%;
+    }
+
+    ul {
+      gap: var(--space-s);
+    }
+  }
+</style>

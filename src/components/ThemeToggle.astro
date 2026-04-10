@@ -1,0 +1,57 @@
+---
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle dark mode"
+>
+  <span class="icon-light" aria-hidden="true">&#9788;</span>
+  <span class="icon-dark" aria-hidden="true">&#9790;</span>
+</button>
+
+<style>
+  button {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  button:hover {
+    background-color: var(--color-surface);
+  }
+
+  :root[data-theme="light"] .icon-light,
+  :root[data-theme="dark"] .icon-dark {
+    display: none;
+  }
+
+  :root[data-theme="light"] .icon-dark,
+  :root[data-theme="dark"] .icon-light {
+    display: inline;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const theme = localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("theme-toggle");
+      if (!toggle) return;
+      toggle.addEventListener("click", () => {
+        const current = document.documentElement.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+    });
+  })();
+</script>
