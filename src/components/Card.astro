@@ -10,6 +10,8 @@ interface Props {
   externalUrl?: string;
   event?: string;
   commentary?: string;
+  /** Daring Fireball pattern: title links to href, this links to the detail page */
+  permalink?: string;
 }
 
 const {
@@ -21,6 +23,7 @@ const {
   externalUrl,
   event,
   commentary,
+  permalink,
 } = Astro.props;
 
 const dateStr = pubDate.toLocaleDateString("en-US", {
@@ -32,7 +35,8 @@ const dateStr = pubDate.toLocaleDateString("en-US", {
 
 <article class="card">
   <header>
-    <a href={href} class="card-title">{title}</a>
+    <a href={href} class="card-title" {...(permalink ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{title}</a>
+    {permalink && <a href={permalink} class="permalink" title="Permalink">&nbsp;&#8594;</a>}
     <div class="card-meta muted text-sm">
       <time datetime={pubDate.toISOString()}>{dateStr}</time>
       {event && <span> &middot; {event}</span>}
@@ -64,6 +68,16 @@ const dateStr = pubDate.toLocaleDateString("en-US", {
   }
 
   .card-title:hover {
+    color: var(--color-accent);
+  }
+
+  .permalink {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+  }
+
+  .permalink:hover {
     color: var(--color-accent);
   }
 

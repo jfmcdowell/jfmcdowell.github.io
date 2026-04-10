@@ -13,9 +13,10 @@ const talks = await getPublishedTalks();
     {talks.map((talk) => (
       <Card
         title={talk.data.title}
-        href={`/talks/${talk.id}/`}
+        href={talk.data.recording ?? `/talks/${talk.id}/`}
         pubDate={talk.data.pubDate}
         event={talk.data.event}
+        {...(talk.data.recording !== undefined ? { permalink: `/talks/${talk.id}/` } : {})}
         {...(talk.data.description !== undefined ? { description: talk.data.description } : {})}
         {...(talk.data.tags !== undefined ? { tags: talk.data.tags } : {})}
       />

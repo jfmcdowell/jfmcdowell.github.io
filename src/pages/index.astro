@@ -75,9 +75,10 @@ const recentLinks = links.slice(0, 5);
       {talks.map((talk) => (
         <Card
           title={talk.data.title}
-          href={`/talks/${talk.id}/`}
+          href={talk.data.recording ?? `/talks/${talk.id}/`}
           pubDate={talk.data.pubDate}
           {...(talk.data.event !== undefined ? { event: talk.data.event } : {})}
+          {...(talk.data.recording !== undefined ? { permalink: `/talks/${talk.id}/` } : {})}
         />
       ))}
       <p class="section-link"><a href="/talks/">All talks &rarr;</a></p>
