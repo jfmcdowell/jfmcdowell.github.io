@@ -25,7 +25,7 @@ const updatedStr = updatedDate?.toLocaleDateString("en-US", {
 });
 ---
 
-<Base title={title} description={description}>
+<Base title={title} {...(description !== undefined ? { description } : {})}>
   <article>
     <header>
       <h1>{title}</h1>
