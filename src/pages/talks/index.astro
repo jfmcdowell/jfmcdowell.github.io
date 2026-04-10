@@ -1,0 +1,30 @@
+---
+import Base from "@/layouts/Base.astro";
+import Card from "@/components/Card.astro";
+import { getPublishedTalks } from "@/utils/content";
+
+const talks = await getPublishedTalks();
+---
+
+<Base title="Talks" description="Conference talks, meetups, and presentations.">
+  <h1>Talks</h1>
+  <section>
+    {talks.length === 0 && <p class="muted">No talks yet.</p>}
+    {talks.map((talk) => (
+      <Card
+        title={talk.data.title}
+        href={`/talks/${talk.id}/`}
+        pubDate={talk.data.pubDate}
+        event={talk.data.event}
+        description={talk.data.description}
+        tags={talk.data.tags}
+      />
+    ))}
+  </section>
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: var(--space-l);
+  }
+</style>

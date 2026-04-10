@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import Post from "@/layouts/Post.astro";
+
+export async function getStaticPaths() {
+  const talks = await getCollection("talks", ({ data }) => !data.draft);
+  return talks.map((talk) => ({
+    params: { slug: talk.id },
+    props: { talk },
+  }));
+}
+
+const { talk } = Astro.props;
+const { Content } = await render(talk);
+---
+
+<Post
+  title={talk.data.title}
+  description={talk.data.description}
+  pubDate={talk.data.pubDate}
+  tags={talk.data.tags}
+>
+  <p class="muted text-sm">
+    {talk.data.event}
+    {talk.data.slides && <span> &middot; <a href={talk.data.slides}>Slides</a></span>}
+    {talk.data.recording && <span> &middot; <a href={talk.data.recording}>Recording</a></span>}
+  </p>
+  <Content />
+</Post>
