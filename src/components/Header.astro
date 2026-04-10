@@ -80,6 +80,7 @@ const currentPath = Astro.url.pathname;
 
 <script>
   async function loadPagefind() {
+    // @ts-expect-error — pagefind is a build-time artifact, not resolvable at type-check time
     const pagefind = await import("/pagefind/pagefind-ui.js");
     new pagefind.PagefindUI({
       element: "#search",

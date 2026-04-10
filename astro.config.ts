@@ -14,5 +14,10 @@ export default defineConfig({
         "@": "/src",
       },
     },
+    build: {
+      rollupOptions: {
+        external: ["/pagefind/pagefind-ui.js"],
+      },
+    },
   },
 });
