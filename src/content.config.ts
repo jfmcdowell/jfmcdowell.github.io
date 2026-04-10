@@ -1,5 +1,6 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
+import { z } from "zod";
 
 const tagSchema = z
   .array(z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "Tags must be lowercase kebab-case"))
@@ -33,8 +34,8 @@ const talks = defineCollection({
     title: z.string(),
     event: z.string(),
     pubDate: z.coerce.date(),
-    slides: z.string().url().optional(),
-    recording: z.string().url().optional(),
+    slides: z.url().optional(),
+    recording: z.url().optional(),
     description: z.string().optional(),
     tags: tagSchema,
     draft: z.boolean().default(false),
@@ -45,7 +46,7 @@ const links = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/links" }),
   schema: z.object({
     title: z.string(),
-    url: z.string().url(),
+    url: z.url(),
     pubDate: z.coerce.date(),
     commentary: z.string().optional(),
     tags: tagSchema,
