@@ -1,0 +1,29 @@
+{
+  "name": "jfmcdowell.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pnpm exec pagefind --site dist",
+    "preview": "astro preview",
+    "check": "biome check . && astro check && pnpm exec markdownlint-cli2 'src/content/**/*.{md,mdx}'",
+    "format": "biome format --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "astro": "^6.1.5"
+  },
+  "devDependencies": {
+    "@astrojs/rss": "^4.0.18",
+    "@biomejs/biome": "^2.4.11",
+    "markdownlint-cli2": "^0.22.0",
+    "pagefind": "^1.5.0",
+    "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
+  }
+}
