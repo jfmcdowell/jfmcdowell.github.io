@@ -9,11 +9,6 @@ export default defineConfig({
     format: "directory",
   },
   vite: {
-    resolve: {
-      alias: {
-        "@": "/src",
-      },
-    },
     build: {
       rollupOptions: {
         external: ["/pagefind/pagefind-ui.js"],
