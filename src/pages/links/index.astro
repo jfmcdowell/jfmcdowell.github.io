@@ -1,0 +1,30 @@
+---
+import Base from "@/layouts/Base.astro";
+import Card from "@/components/Card.astro";
+import { getPublishedLinks } from "@/utils/content";
+
+const links = await getPublishedLinks();
+---
+
+<Base title="Links" description="Curated bookmarks and reading.">
+  <h1>Links</h1>
+  <section>
+    {links.length === 0 && <p class="muted">No links yet.</p>}
+    {links.map((link) => (
+      <Card
+        title={link.data.title}
+        href={link.data.url}
+        pubDate={link.data.pubDate}
+        externalUrl={link.data.url}
+        commentary={link.data.commentary}
+        tags={link.data.tags}
+      />
+    ))}
+  </section>
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: var(--space-l);
+  }
+</style>
