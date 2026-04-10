@@ -11,9 +11,7 @@ tags: ["design", "human-interaction", "usability"]
 
  Enterprise Architecture equally suffers from a lack of desire to be human-centered. Our profession has numerous analogues with [City Planning][10] and Architecture, and if you make a few terminology substutions, Christine's article is equally applicable.
 
-
 >No wonder architecture has become a niche vocation. You don't connect with people any more. -- Christine Outram
-
 
 Enterprise Architecture today is a niche profession that isn't human centered. All to often Enterprise Architects get caught up in the weight of the discipline. We tend to talk in our own language ([frameworks][3], [models][4], [Zachman][5], etc) and completely miss out on opportunities to make a tangible difference in the people and processes that consume our work. When people don't understand what we do or why it should matter, [we get defensive.][11] Worse than that, we rarely talk to others in our enterprises about the value that we can add in plain speech.
 

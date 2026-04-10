@@ -15,5 +15,4 @@ One could argue that IT rather enjoys the ["VP of No"] role. Despite an [abundan
 
 Except IT typically isn't organized for listening to the greater needs of the Enterprise and misses countless opportunities to leverage those moments of tension into tangible innovation products and services, thereby reconciling towards the user.
 
-
  What does this reconciliation _look_ like? I don't know is probably the most accurate and honest answer. But a step towards it might reflect a consultancy with a contract that is universally aligned and incentivized towards the clients holistic best interest. In this world IT would provide the guard rails of core infrastructure, platform and tools -- biasing towards organization innovation rather than consistency. The rest of the organization would be embedded in cross disciplinary project teams, all working to stitch together the enterprise into a coherent whole by designing, building, iterating and managing the entire life cycle (and renewal) of the enterprise productivity itself. With this as the  foundation, I put forth that the modern Enterprise Architect's role is to build, improve and refine systems that foster innovation.

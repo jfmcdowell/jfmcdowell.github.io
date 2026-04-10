@@ -15,4 +15,4 @@ So far it is an easy and enjoyable read. The case studies are very interesting a
 
 Follow Milan on Twitter here: [@eda__c][1]
 
-[1]:	https://twitter.com/eda__c "@eda__c"
+[1]: https://twitter.com/eda__c "@eda__c"

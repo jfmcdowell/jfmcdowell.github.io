@@ -19,9 +19,6 @@ My key take away, or perhaps what is currently resonating with me, is the notion
 
 Because of its depth and breadth, this book will serve as a reference to point towards various disciplines for deeper study and analysis. For the Technologist, Business Strategist or Enterprise Architect looking to reconcile back towards your end users, you will find valuable insights that will challenge your notion of what an enterprise is, and its connective tissue. However, for the well-read design or user experience professional, I think this book might be too light in content in the various topics. I suspect those individuals will want to start at the framework and jump right into the meat of any particular area of interest. Even so, a good actionable framework is hard to find, let alone design. That alone is worth the cost of acquiring this book.
 
-
-
-
 [1]: http://twitter.com/eda__c
 [2]: "http://www.amazon.com/gp/product/0123884357/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0123884357&linkCode=as2&tag=usercentente-20
 [3]: http://www.usercenteredenterprise.com/2013/06/11/intersection/
