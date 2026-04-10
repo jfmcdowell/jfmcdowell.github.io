@@ -1,0 +1,28 @@
+---
+import Base from "@/layouts/Base.astro";
+import Card from "@/components/Card.astro";
+import { getPublishedNotes } from "@/utils/content";
+
+const notes = await getPublishedNotes();
+---
+
+<Base title="Notes" description="Short-form notes, TIL, and scratch pad.">
+  <h1>Notes</h1>
+  <section>
+    {notes.length === 0 && <p class="muted">No notes yet.</p>}
+    {notes.map((note) => (
+      <Card
+        title={note.data.title}
+        href={`/notes/${note.id}/`}
+        pubDate={note.data.pubDate}
+        tags={note.data.tags}
+      />
+    ))}
+  </section>
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: var(--space-l);
+  }
+</style>
