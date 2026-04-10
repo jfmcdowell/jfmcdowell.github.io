@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
   "vcs": {
     "clientKind": "git",
     "enabled": true,
@@ -25,6 +25,25 @@
     }
   },
   "files": {
-    "ignore": ["dist/**", "node_modules/**", ".astro/**"]
-  }
+    "includes": [
+      "src/**",
+      "astro.config.ts",
+      "biome.json",
+      "tsconfig.json",
+      ".github/**"
+    ]
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off",
+            "noUnusedVariables": "off"
+          }
+        }
+      }
+    }
+  ]
 }

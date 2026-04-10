@@ -3,7 +3,11 @@ import { glob } from "astro/loaders";
 import { z } from "zod";
 
 const tagSchema = z
-  .array(z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "Tags must be lowercase kebab-case"))
+  .array(
+    z
+      .string()
+      .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "Tags must be lowercase kebab-case"),
+  )
   .optional();
 
 const blog = defineCollection({

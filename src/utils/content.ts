@@ -1,5 +1,5 @@
-import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 type AnyEntry =
   | CollectionEntry<"blog">
@@ -13,22 +13,30 @@ function isPublished(entry: { data: { draft?: boolean } }): boolean {
 
 export async function getPublishedBlogPosts() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
 }
 
 export async function getPublishedNotes() {
   const notes = await getCollection("notes", ({ data }) => !data.draft);
-  return notes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return notes.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
 }
 
 export async function getPublishedTalks() {
   const talks = await getCollection("talks", ({ data }) => !data.draft);
-  return talks.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return talks.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
 }
 
 export async function getPublishedLinks() {
   const links = await getCollection("links", ({ data }) => !data.draft);
-  return links.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return links.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
 }
 
 export async function getAllTags(): Promise<Map<string, number>> {

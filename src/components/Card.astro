@@ -12,7 +12,16 @@ interface Props {
   commentary?: string;
 }
 
-const { title, href, pubDate, description, tags, externalUrl, event, commentary } = Astro.props;
+const {
+  title,
+  href,
+  pubDate,
+  description,
+  tags,
+  externalUrl,
+  event,
+  commentary,
+} = Astro.props;
 
 const dateStr = pubDate.toLocaleDateString("en-US", {
   year: "numeric",
