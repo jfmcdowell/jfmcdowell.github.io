@@ -1,0 +1,46 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getAllTags } from "@/utils/content";
+
+const tagCounts = await getAllTags();
+const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+---
+
+<Base title="Tags" description="Browse content by tag.">
+  <h1>Tags</h1>
+  {sortedTags.length === 0 && <p class="muted">No tags yet.</p>}
+  <ul class="tag-grid" role="list">
+    {sortedTags.map(([tag, count]) => (
+      <li>
+        <a href={`/tags/${tag}/`}>{tag} <span class="muted">({count})</span></a>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: var(--space-l);
+  }
+
+  .tag-grid {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+  }
+
+  a {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+</style>

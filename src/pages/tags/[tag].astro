@@ -1,0 +1,90 @@
+---
+import Base from "@/layouts/Base.astro";
+import Card from "@/components/Card.astro";
+import { getAllTags, getEntriesByTag } from "@/utils/content";
+
+export async function getStaticPaths() {
+  const tagCounts = await getAllTags();
+  return [...tagCounts.keys()].map((tag) => ({
+    params: { tag },
+  }));
+}
+
+const { tag } = Astro.params;
+const { blog, notes, talks, links } = await getEntriesByTag(tag);
+---
+
+<Base title={`Tagged: ${tag}`} description={`All content tagged with "${tag}".`}>
+  <h1>Tagged: {tag}</h1>
+
+  {blog.length > 0 && (
+    <section>
+      <h2>Blog</h2>
+      {blog.map((post) => (
+        <Card
+          title={post.data.title}
+          href={`/blog/${post.id}/`}
+          pubDate={post.data.pubDate}
+          description={post.data.description}
+        />
+      ))}
+    </section>
+  )}
+
+  {notes.length > 0 && (
+    <section>
+      <h2>Notes</h2>
+      {notes.map((note) => (
+        <Card
+          title={note.data.title}
+          href={`/notes/${note.id}/`}
+          pubDate={note.data.pubDate}
+        />
+      ))}
+    </section>
+  )}
+
+  {talks.length > 0 && (
+    <section>
+      <h2>Talks</h2>
+      {talks.map((talk) => (
+        <Card
+          title={talk.data.title}
+          href={`/talks/${talk.id}/`}
+          pubDate={talk.data.pubDate}
+          event={talk.data.event}
+        />
+      ))}
+    </section>
+  )}
+
+  {links.length > 0 && (
+    <section>
+      <h2>Links</h2>
+      {links.map((link) => (
+        <Card
+          title={link.data.title}
+          href={link.data.url}
+          pubDate={link.data.pubDate}
+          externalUrl={link.data.url}
+        />
+      ))}
+    </section>
+  )}
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: var(--space-l);
+  }
+
+  section {
+    margin-bottom: var(--space-l);
+  }
+
+  h2 {
+    margin-bottom: var(--space-s);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+</style>
