@@ -1,0 +1,29 @@
+---
+import Base from "@/layouts/Base.astro";
+import Card from "@/components/Card.astro";
+import { getPublishedBlogPosts } from "@/utils/content";
+
+const posts = await getPublishedBlogPosts();
+---
+
+<Base title="Blog" description="Long-form posts on technology, architecture, and ideas.">
+  <h1>Blog</h1>
+  <section>
+    {posts.length === 0 && <p class="muted">No posts yet.</p>}
+    {posts.map((post) => (
+      <Card
+        title={post.data.title}
+        href={`/blog/${post.id}/`}
+        pubDate={post.data.pubDate}
+        description={post.data.description}
+        tags={post.data.tags}
+      />
+    ))}
+  </section>
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: var(--space-l);
+  }
+</style>
