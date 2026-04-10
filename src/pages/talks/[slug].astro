@@ -16,9 +16,9 @@ const { Content } = await render(talk);
 
 <Post
   title={talk.data.title}
-  description={talk.data.description}
   pubDate={talk.data.pubDate}
-  tags={talk.data.tags}
+  {...(talk.data.description !== undefined ? { description: talk.data.description } : {})}
+  {...(talk.data.tags !== undefined ? { tags: talk.data.tags } : {})}
 >
   <p class="muted text-sm">
     {talk.data.event}

@@ -15,8 +15,8 @@ const posts = await getPublishedBlogPosts();
         title={post.data.title}
         href={`/blog/${post.id}/`}
         pubDate={post.data.pubDate}
-        description={post.data.description}
-        tags={post.data.tags}
+        {...(post.data.description !== undefined ? { description: post.data.description } : {})}
+        {...(post.data.tags !== undefined ? { tags: post.data.tags } : {})}
       />
     ))}
   </section>

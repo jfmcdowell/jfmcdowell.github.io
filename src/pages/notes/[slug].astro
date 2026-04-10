@@ -17,7 +17,7 @@ const { Content } = await render(note);
 <Post
   title={note.data.title}
   pubDate={note.data.pubDate}
-  tags={note.data.tags}
+  {...(note.data.tags !== undefined ? { tags: note.data.tags } : {})}
 >
   <Content />
 </Post>

@@ -15,7 +15,7 @@ const notes = await getPublishedNotes();
         title={note.data.title}
         href={`/notes/${note.id}/`}
         pubDate={note.data.pubDate}
-        tags={note.data.tags}
+        {...(note.data.tags !== undefined ? { tags: note.data.tags } : {})}
       />
     ))}
   </section>

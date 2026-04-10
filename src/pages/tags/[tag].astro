@@ -25,7 +25,7 @@ const { blog, notes, talks, links } = await getEntriesByTag(tag);
           title={post.data.title}
           href={`/blog/${post.id}/`}
           pubDate={post.data.pubDate}
-          description={post.data.description}
+          {...(post.data.description !== undefined ? { description: post.data.description } : {})}
         />
       ))}
     </section>

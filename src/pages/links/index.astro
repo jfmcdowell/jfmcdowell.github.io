@@ -16,8 +16,8 @@ const links = await getPublishedLinks();
         href={link.data.url}
         pubDate={link.data.pubDate}
         externalUrl={link.data.url}
-        commentary={link.data.commentary}
-        tags={link.data.tags}
+        {...(link.data.commentary !== undefined ? { commentary: link.data.commentary } : {})}
+        {...(link.data.tags !== undefined ? { tags: link.data.tags } : {})}
       />
     ))}
   </section>

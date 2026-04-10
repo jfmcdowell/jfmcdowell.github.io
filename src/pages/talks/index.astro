@@ -16,8 +16,8 @@ const talks = await getPublishedTalks();
         href={`/talks/${talk.id}/`}
         pubDate={talk.data.pubDate}
         event={talk.data.event}
-        description={talk.data.description}
-        tags={talk.data.tags}
+        {...(talk.data.description !== undefined ? { description: talk.data.description } : {})}
+        {...(talk.data.tags !== undefined ? { tags: talk.data.tags } : {})}
       />
     ))}
   </section>
