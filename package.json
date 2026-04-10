@@ -17,6 +17,7 @@
     "astro": "^6.1.5"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.8",
     "@astrojs/rss": "^4.0.18",
     "@biomejs/biome": "^2.4.11",
     "markdownlint-cli2": "^0.22.0",
@@ -24,6 +25,9 @@
     "typescript": "^5.9.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
